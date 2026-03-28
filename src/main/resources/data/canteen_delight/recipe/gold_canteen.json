@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": { "item": "minecraft:gold_ingot" },
+    "X": { "item": "canteen_delight:iron_canteen" }
+  },
+  "pattern": [
+    "GGG",
+    "GXG",
+    "GGG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "canteen_delight:gold_canteen"
+  }
+}

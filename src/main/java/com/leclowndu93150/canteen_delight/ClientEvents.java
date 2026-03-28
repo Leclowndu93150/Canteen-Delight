@@ -1,0 +1,20 @@
+package com.leclowndu93150.canteen_delight;
+
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+
+@EventBusSubscriber(modid = CanteenDelight.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+public class ClientEvents {
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(CanteenDelight.CANTEEN_MENU.get(), CanteenScreen::new);
+    }
+
+    @SubscribeEvent
+    public static void registerTooltips(RegisterClientTooltipComponentFactoriesEvent event) {
+        event.register(CanteenTooltip.class, ClientCanteenTooltip::new);
+    }
+}
