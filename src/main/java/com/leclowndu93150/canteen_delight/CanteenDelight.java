@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.ItemContainerContents;
@@ -30,6 +31,7 @@ public class CanteenDelight {
     public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENTS = DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, MODID);
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(Registries.MENU, MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
+    public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, MODID);
 
     public static final Supplier<DataComponentType<ItemContainerContents>> CANTEEN_CONTENTS = DATA_COMPONENTS.register("canteen_contents", () ->
             DataComponentType.<ItemContainerContents>builder()
@@ -55,6 +57,8 @@ public class CanteenDelight {
     public static final Supplier<MenuType<CanteenMenu>> CANTEEN_MENU = MENUS.register("canteen_menu", () ->
             IMenuTypeExtension.create(CanteenMenu::new));
 
+    public static final Supplier<RecipeSerializer<CanteenUpgradeRecipe>> CANTEEN_UPGRADE_RECIPE = RECIPE_SERIALIZERS.register("canteen_upgrade", CanteenUpgradeRecipe.Serializer::new);
+
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB = CREATIVE_MODE_TABS.register("canteen_tab", () ->
             CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.canteen_delight"))
@@ -74,6 +78,7 @@ public class CanteenDelight {
         DATA_COMPONENTS.register(modEventBus);
         MENUS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
+        RECIPE_SERIALIZERS.register(modEventBus);
 
         modEventBus.addListener(this::registerCapabilities);
     }

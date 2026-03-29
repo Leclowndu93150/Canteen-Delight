@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "canteen_delight:canteen_upgrade",
   "category": "misc",
   "key": {
     "G": { "item": "minecraft:gold_ingot" },
