@@ -1,14 +1,17 @@
 package com.leclowndu93150.canteen_delight;
 
+import com.leclowndu93150.canteen_delight.item.CanteenItem;
+import com.leclowndu93150.canteen_delight.menu.CanteenMenu;
+import com.leclowndu93150.canteen_delight.recipe.CanteenUpgradeRecipe;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.ItemContainerContents;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;

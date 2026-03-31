@@ -1,5 +1,9 @@
-package com.leclowndu93150.canteen_delight;
+package com.leclowndu93150.canteen_delight.client;
 
+import com.leclowndu93150.canteen_delight.CanteenDelight;
+import com.leclowndu93150.canteen_delight.menu.CanteenScreen;
+import com.leclowndu93150.canteen_delight.tooltip.CanteenTooltip;
+import com.leclowndu93150.canteen_delight.tooltip.ClientCanteenTooltip;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;

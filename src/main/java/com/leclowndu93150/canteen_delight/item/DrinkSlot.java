@@ -1,4 +1,4 @@
-package com.leclowndu93150.canteen_delight;
+package com.leclowndu93150.canteen_delight.item;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;

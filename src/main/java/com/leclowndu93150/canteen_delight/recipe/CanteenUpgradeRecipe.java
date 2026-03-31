@@ -1,5 +1,7 @@
-package com.leclowndu93150.canteen_delight;
+package com.leclowndu93150.canteen_delight.recipe;
 
+import com.leclowndu93150.canteen_delight.CanteenDelight;
+import com.leclowndu93150.canteen_delight.item.CanteenItem;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

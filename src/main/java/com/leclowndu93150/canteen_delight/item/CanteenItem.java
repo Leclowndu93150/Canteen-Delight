@@ -1,6 +1,11 @@
-package com.leclowndu93150.canteen_delight;
+package com.leclowndu93150.canteen_delight.item;
 
+import com.leclowndu93150.canteen_delight.CanteenDelight;
+import com.leclowndu93150.canteen_delight.compat.ThirstCompat;
+import com.leclowndu93150.canteen_delight.menu.CanteenMenu;
+import com.leclowndu93150.canteen_delight.tooltip.CanteenTooltip;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -15,10 +20,14 @@ import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.MilkBucketItem;
+import net.minecraft.world.item.PotionItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 
@@ -109,16 +118,47 @@ public class CanteenItem extends Item {
             entity.eat(level, drinkStack.copy(), food);
         }
 
-        PotionContents potionContents = drinkStack.get(net.minecraft.core.component.DataComponents.POTION_CONTENTS);
-        if (potionContents != null) {
-            potionContents.forEachEffect(effect -> entity.addEffect(effect));
+        if (drinkStack.getItem() instanceof MilkBucketItem) {
+            if (!level.isClientSide) {
+                entity.removeAllEffects();
+            }
+        }
+
+        PotionContents potionContents = drinkStack.get(DataComponents.POTION_CONTENTS);
+        if (potionContents != null && food == null) {
+            potionContents.forEachEffect(effect -> {
+                if (effect.getEffect().value().isInstantenous()) {
+                    Player player = entity instanceof Player ? (Player) entity : null;
+                    effect.getEffect().value().applyInstantenousEffect(player, player, entity, effect.getAmplifier(), 1.0);
+                } else {
+                    entity.addEffect(effect);
+                }
+            });
         }
 
         if (entity instanceof Player player) {
+            if (ModList.get().isLoaded("thirst")) {
+                ThirstCompat.onDrink(drinkStack, player);
+            }
+
             ItemStack container = drinkStack.getCraftingRemainingItem();
             if (!container.isEmpty() && !player.hasInfiniteMaterials()) {
                 if (!player.getInventory().add(container)) {
                     player.drop(container, false);
+                }
+            }
+
+            if (drinkStack.getItem() instanceof PotionItem && !player.hasInfiniteMaterials()) {
+                ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
+                if (!player.getInventory().add(bottle)) {
+                    player.drop(bottle, false);
+                }
+            }
+
+            if (drinkStack.getItem() instanceof MilkBucketItem && !player.hasInfiniteMaterials()) {
+                ItemStack bucket = new ItemStack(Items.BUCKET);
+                if (!player.getInventory().add(bucket)) {
+                    player.drop(bucket, false);
                 }
             }
 

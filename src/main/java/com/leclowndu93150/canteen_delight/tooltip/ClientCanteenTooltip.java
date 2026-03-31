@@ -1,4 +1,4 @@
-package com.leclowndu93150.canteen_delight;
+package com.leclowndu93150.canteen_delight.tooltip;
 
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;

@@ -1,5 +1,8 @@
-package com.leclowndu93150.canteen_delight;
+package com.leclowndu93150.canteen_delight.menu;
 
+import com.leclowndu93150.canteen_delight.CanteenDelight;
+import com.leclowndu93150.canteen_delight.item.CanteenItem;
+import com.leclowndu93150.canteen_delight.item.DrinkSlot;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -8,7 +11,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
-
 
 public class CanteenMenu extends AbstractContainerMenu {
     private final int slotCount;

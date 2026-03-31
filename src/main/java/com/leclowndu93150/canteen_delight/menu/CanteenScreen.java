@@ -1,5 +1,6 @@
-package com.leclowndu93150.canteen_delight;
+package com.leclowndu93150.canteen_delight.menu;
 
+import com.leclowndu93150.canteen_delight.CanteenDelight;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
