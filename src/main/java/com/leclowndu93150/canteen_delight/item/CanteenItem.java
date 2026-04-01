@@ -118,10 +118,10 @@ public class CanteenItem extends Item {
             entity.eat(level, drinkStack.copy(), food);
         }
 
-        if (drinkStack.getItem() instanceof MilkBucketItem) {
-            if (!level.isClientSide) {
-                entity.removeAllEffects();
-            }
+        boolean isMilkItem = drinkStack.getItem() instanceof MilkBucketItem
+                || drinkStack.getDescriptionId().toLowerCase().contains("milk");
+        if (isMilkItem && !level.isClientSide) {
+            entity.removeAllEffects();
         }
 
         PotionContents potionContents = drinkStack.get(DataComponents.POTION_CONTENTS);
@@ -161,6 +161,7 @@ public class CanteenItem extends Item {
                     player.drop(bucket, false);
                 }
             }
+
 
             if (food != null && food.usingConvertsTo().isPresent() && !player.hasInfiniteMaterials()) {
                 ItemStack convertedItem = food.usingConvertsTo().get().copy();
